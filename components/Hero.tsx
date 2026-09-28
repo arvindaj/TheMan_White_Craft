@@ -98,8 +98,16 @@ export default function Hero() {
             Book on Instagram
           </a>
           <a
-            href="#the-man"
+            href="https://wa.me/916383368953?text=Hi%20White%20Craft%2C%20I%27d%20like%20to%20book%20a%20cut."
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-gold-dim px-7 py-3.5 text-[0.95rem] text-cream transition-colors hover:border-gold hover:text-gold"
+          >
+            WhatsApp us
+          </a>
+          <a
+            href="#the-man"
+            className="inline-flex items-center gap-2 px-2 py-3.5 text-[0.95rem] text-cream-dim underline-offset-4 transition-colors hover:text-gold hover:underline"
           >
             The story
           </a>

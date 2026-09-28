@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Trust from "@/components/Trust";
 import Visit from "@/components/Visit";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Trust />
       <Visit />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }

@@ -81,6 +81,7 @@ const jsonLd = {
     "https://www.instagram.com/whitecraft_salon/",
     "https://www.instagram.com/sansmokie/",
   ],
+  telephone: "+91 63833 68953",
   priceRange: "$$",
 };
 
