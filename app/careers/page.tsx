@@ -3,9 +3,10 @@ import Footer from "@/components/Footer";
 import CareersClient from "@/components/CareersClient";
 
 export const metadata: Metadata = {
-  title: "Careers — Barber & Salon Jobs in Coimbatore",
+  title: "Barber & Salon Jobs in Coimbatore — Careers",
   description:
-    "Now hiring at White Craft Mens Salon, Coimbatore: barbers, trainees, spa therapists and front desk. Upload your resume in under a minute.",
+    "Barber and salon jobs in Coimbatore. White Craft Mens Salon is hiring barbers, trainees, spa therapists and front desk. Upload your resume in a minute.",
+  keywords: ["barber jobs in Coimbatore", "salon jobs Coimbatore", "hairstylist vacancy Coimbatore", "barber trainee Coimbatore", "men's salon careers"],
   alternates: { canonical: "/careers" },
 };
 

@@ -40,7 +40,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-sm tracking-wide text-cream-dim sm:text-base"
         >
-          Coimbatore &middot; Men&rsquo;s grooming, done with intent
+          Barber &amp; haircut styles in Coimbatore &middot; Men&rsquo;s grooming, done with intent
         </motion.p>
 
         <motion.h1

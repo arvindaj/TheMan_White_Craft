@@ -22,19 +22,27 @@ const SITE_URL = "https://www.whitecraftsalon.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "White Craft Mens Salon | Hair, Beard & Grooming in Coimbatore",
+    default: "Best Barber & Haircut Styles in Coimbatore | White Craft",
     template: "%s | White Craft Mens Salon",
   },
   description:
-    "White Craft Mens Salon in Coimbatore — cuts, beard care and spa grooming by Sans (@sansmokie). 73a Athipalayam Road, Sunnambukalvai, Coimbatore 641046. Book on Instagram @whitecraft_salon.",
+    "White Craft Mens Salon, Coimbatore: expert barber, trending haircut styles, fades, beard care & spa grooming by Sans. Athipalayam Road. Book on Instagram.",
   keywords: [
-    "mens salon Coimbatore",
-    "White Craft salon",
+    "barber in Coimbatore",
     "best barber Coimbatore",
+    "haircut styles Coimbatore",
+    "men's haircut Coimbatore",
+    "hairstyles for men Coimbatore",
+    "fade haircut Coimbatore",
+    "mens salon Coimbatore",
+    "men's fashion and styling Coimbatore",
+    "fashion designer Coimbatore",
     "beard grooming Coimbatore",
-    "sansmokie",
-    "haircut Athipalayam Road",
     "mens spa Coimbatore",
+    "barber near me",
+    "salon near Athipalayam Road",
+    "White Craft Mens Salon",
+    "sansmokie",
   ],
   authors: [{ name: "White Craft Mens Salon" }],
   alternates: { canonical: "/" },
@@ -43,18 +51,29 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE_URL,
     siteName: "White Craft Mens Salon",
-    title: "White Craft Mens Salon | Hair, Beard & Grooming in Coimbatore",
+    title: "Best Barber & Haircut Styles in Coimbatore | White Craft",
     description:
-      "Cuts, beard care and spa grooming by Sans (@sansmokie). Book on Instagram @whitecraft_salon.",
+      "Expert barber, trending haircut styles, fades and beard care in Coimbatore. Book on Instagram @whitecraft_salon.",
     images: [{ url: "/images/branding.jpg", width: 720, height: 1108, alt: "White Craft Mens Salon" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "White Craft Mens Salon | Coimbatore",
-    description: "Cuts, beard care and spa grooming by Sans (@sansmokie).",
+    title: "Best Barber & Haircut Styles in Coimbatore | White Craft",
+    description: "Expert barber, trending haircut styles, fades and beard care in Coimbatore.",
     images: ["/images/branding.jpg"],
   },
-  robots: { index: true, follow: true },
+  category: "Barber shop",
+  other: {
+    "geo.region": "IN-TN",
+    "geo.placename": "Coimbatore",
+    "geo.position": "11.0168;76.9558",
+    ICBM: "11.0168, 76.9558",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
 };
 
 export const viewport: Viewport = {
@@ -83,6 +102,20 @@ const jsonLd = {
     "https://www.instagram.com/sansmokie/",
   ],
   priceRange: "$$",
+  url: SITE_URL,
+  description:
+    "Men's salon in Coimbatore offering barber services, haircut styles, fades, beard care and spa grooming.",
+  geo: { "@type": "GeoCoordinates", latitude: 11.0168, longitude: 76.9558 },
+  areaServed: { "@type": "City", name: "Coimbatore" },
+  knowsAbout: ["Barber", "Haircut styles", "Men's hairstyles", "Fade haircut", "Beard grooming", "Men's styling"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services",
+    itemListElement: ["Haircut", "Hairstyling", "Beard care", "Spa & facial"].map((name) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name },
+    })),
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
