@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { jobs, OPEN_APPLICATION, MAX_RESUME_MB, RESUME_EXT } from "@/lib/jobs";
+import { jobs, OPEN_APPLICATION, MAX_RESUME_MB, RESUME_EXT, WHATSAPP_NUMBER } from "@/lib/jobs";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -10,6 +10,8 @@ const field =
 
 export default function ApplyForm({ role, onRoleChange }: { role: string; onRoleChange: (r: string) => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [waNote, setWaNote] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [fileErr, setFileErr] = useState("");
   const [drag, setDrag] = useState(false);
@@ -44,6 +46,39 @@ export default function ApplyForm({ role, onRoleChange }: { role: string; onRole
     }
   };
 
+  const sendWhatsApp = async () => {
+    const form = formRef.current;
+    if (!form) return;
+    setWaNote("");
+    if (!form.reportValidity()) return;
+    if (!file) return setFileErr("Please attach your resume.");
+    const v = (n: string) => ((form.elements.namedItem(n) as HTMLInputElement | null)?.value || "").trim();
+    const text = [
+      "Hi White Craft, I'd like to apply.",
+      `Role: ${role}`,
+      `Name: ${v("name")}`,
+      `Phone: ${v("phone")}`,
+      v("experience") && `Experience: ${v("experience")}`,
+      v("message") && `Note: ${v("message")}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    // Phones: share the resume file straight into WhatsApp
+    try {
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], text });
+        setWaNote("Choose WhatsApp, then the White Craft contact, and send.");
+        return;
+      }
+    } catch (err) {
+      if ((err as Error).name === "AbortError") return;
+    }
+    // Desktop / fallback: open chat with details, applicant attaches the resume
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+    setWaNote("WhatsApp opened. Tap the paperclip, attach your resume file and send.");
+  };
+
   if (status === "done") {
     return (
       <div role="status" className="border border-gold-dim bg-surface p-8">
@@ -56,7 +91,7 @@ export default function ApplyForm({ role, onRoleChange }: { role: string; onRole
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-5" noValidate={false}>
+    <form ref={formRef} onSubmit={submit} className="grid gap-5">
       {/* honeypot */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
@@ -185,13 +220,30 @@ export default function ApplyForm({ role, onRoleChange }: { role: string; onRole
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="h-14 bg-gold px-7 text-[1rem] text-ink transition-colors hover:bg-[#dcb75d] disabled:opacity-60 sm:w-fit"
-      >
-        {status === "sending" ? "Sending…" : "Submit application"}
-      </button>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="h-14 bg-gold px-7 text-[1rem] text-ink transition-colors hover:bg-[#dcb75d] disabled:opacity-60"
+        >
+          {status === "sending" ? "Sending…" : "Submit application"}
+        </button>
+        <button
+          type="button"
+          onClick={sendWhatsApp}
+          className="inline-flex h-14 items-center justify-center gap-2 border border-gold px-7 text-[1rem] text-cream transition-colors hover:bg-gold hover:text-ink"
+        >
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1a12 12 0 0 1-5.1-3.4 8.8 8.8 0 0 1-1.8-3c-.3-1.6.5-2.4.8-2.7.3-.3.7-.3.9-.3h.6c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6-.3.4c-.1.2-.2.3 0 .6.4.7 1 1.3 1.6 1.8.8.6 1.4.8 1.7 1 .2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.8-.1 1.4z" />
+          </svg>
+          Send on WhatsApp
+        </button>
+      </div>
+      {waNote && (
+        <p role="status" className="text-[0.9rem] text-gold">
+          {waNote}
+        </p>
+      )}
     </form>
   );
 }

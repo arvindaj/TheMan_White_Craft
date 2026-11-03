@@ -52,3 +52,7 @@ export const RESUME_TYPES = [
   "image/png",
 ];
 export const RESUME_EXT = [".pdf", ".doc", ".docx", ".jpg", ".jpeg", ".png"];
+
+// Salon WhatsApp number in international format, digits only (India = 91 + 10 digits).
+// Example: "919876543210". Leave empty to let the applicant pick the contact.
+export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";

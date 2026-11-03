@@ -64,7 +64,10 @@ export async function POST(req: Request) {
         attachments: [{ filename: safeName, content: buf.toString("base64") }],
       }),
     });
-    if (!res.ok) return NextResponse.json({ error: "Couldn't send your application. Please try again." }, { status: 502 });
+    if (!res.ok) {
+      console.error("Resend error", res.status, await res.text().catch(() => ""));
+      return NextResponse.json({ error: "Couldn't send your application. Please try again." }, { status: 502 });
+    }
     return NextResponse.json({ ok: true });
   }
 
