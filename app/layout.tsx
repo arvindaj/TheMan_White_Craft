@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const displayFont = Bodoni_Moda({
   subsets: ["latin"],
@@ -81,7 +82,6 @@ const jsonLd = {
     "https://www.instagram.com/whitecraft_salon/",
     "https://www.instagram.com/sansmokie/",
   ],
-  telephone: "+91 63833 68953",
   priceRange: "$$",
 };
 
@@ -94,7 +94,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-body antialiased overflow-x-hidden">{children}</body>
+      <body className="font-body antialiased overflow-x-hidden"><Header />
+        {children}
+      </body>
     </html>
   );
 }

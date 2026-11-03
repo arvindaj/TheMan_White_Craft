@@ -10,7 +10,7 @@ const fadeUp = {
 
 export default function TheMan() {
   return (
-    <section id="the-man" className="border-t border-line px-6 py-24 sm:px-8 sm:py-28">
+    <section id="the-man" className="scroll-mt-32 md:scroll-mt-20 border-t border-line px-6 py-24 sm:px-8 sm:py-28">
       <div className="mx-auto grid max-w-wrap grid-cols-1 gap-11 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
         <motion.figure
           variants={fadeUp}

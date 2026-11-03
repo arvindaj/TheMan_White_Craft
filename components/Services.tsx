@@ -22,7 +22,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="border-t border-line px-6 py-24 sm:px-8">
+    <section id="services" className="scroll-mt-32 md:scroll-mt-20 border-t border-line px-6 py-24 sm:px-8">
       <div className="mx-auto max-w-wrap">
         <h2 className="mb-12 max-w-[16ch] font-display text-[clamp(1.7rem,3.2vw,2.4rem)]">
           Three things we don&rsquo;t rush.

@@ -3,9 +3,9 @@ import TheMan from "@/components/TheMan";
 import Gallery from "@/components/Gallery";
 import Services from "@/components/Services";
 import Trust from "@/components/Trust";
+import HiringBanner from "@/components/HiringBanner";
 import Visit from "@/components/Visit";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -15,9 +15,9 @@ export default function Home() {
       <Gallery />
       <Services />
       <Trust />
+      <HiringBanner />
       <Visit />
       <Footer />
-      <WhatsAppButton />
     </main>
   );
 }
